@@ -1,0 +1,13 @@
+file = {
+	SOI ~
+		commands* ~
+	EOI
+}
+
+commands = _{ v | f }
+
+num = @{ (ASCII_DIGIT | "-" | "." | "-")+ }
+v = { "v" ~ num ~ num ~ num ~ NEWLINE? }
+f = { "f" ~ num ~ num ~ num ~ NEWLINE? }
+
+WHITESPACE = _{ " " }

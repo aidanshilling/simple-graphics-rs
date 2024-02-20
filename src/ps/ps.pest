@@ -1,0 +1,22 @@
+file = {
+	SOI ~
+		(!begin ~ ANY)* ~
+		begin ~
+		(commands? ~ NEWLINE)* ~
+		end ~
+		ANY* ~
+	EOI
+}
+
+begin = _{ "%%%BEGIN" ~ NEWLINE }
+end = _{ "%%%" }
+
+commands = _{ moveto | lineto | line | stroke }
+
+num = @{ (ASCII_DIGIT | "-")+  }
+line = { num ~ num ~ num ~ num ~ "Line" }
+moveto = { num ~ num ~ "moveto" }
+lineto = { num ~ num ~ "lineto" }
+stroke = { "stroke" }
+
+WHITESPACE = _{ " " }
